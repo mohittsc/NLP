@@ -1,0 +1,38 @@
+NLP - Applications:
+Text Classification
+Clustering
+Topic Mining
+Named Entities
+
+
+Text Classification(Supervised Learning):
+
+Dataset:
+Text Data -  Cleaning
+Feature Formation - tf, tfidf ( transformations)
+Feature Selection - Filtering on the basis of tf values
+
+Models:
+Naive Bayes
+Logistic
+SVM
+Random Forest
+
+Parameter Tuning:
+Grid Search for parameter optimization
+Train, test
+
+Clustering:
+Text Data -  Cleaning, stop word removal
+Feature Formation - tf, tfidf ( transformations)
+Feature Selection - Filtering on the basis of tf values
+
+Models:
+K-Means, Hierarchical
+Similarity Metric:
+Euclidean Distance, Cosine Similarity
+
+Topic Mining:
+
+
+
