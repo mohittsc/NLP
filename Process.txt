@@ -33,6 +33,6 @@ Similarity Metric:
 Euclidean Distance, Cosine Similarity
 
 Topic Mining:
-
+LDA
 
 
