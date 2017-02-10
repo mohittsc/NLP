@@ -17,6 +17,11 @@ from sklearn.metrics import accuracy_score
 from nltk.stem.porter import *
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import classification_report
+from sklearn.svm import SVC
+from sklearn.linear_model import LogisticRegression
+
 
 
 
@@ -150,9 +155,51 @@ mnb = MultinomialNB()
 mnb.fit(X_train, y_train) # fit the data to the algorithm
 mnb.score(X_test,y_test)
 #0.66
+print "Naive Bayes Score = ",mnb.score(X_test,y_test)
+
+#--------------------------------Logistic Regression--------
+modelLogistic=LogisticRegression()
+Logistic=modelLogistic.fit(X_train, y_train)
+print "Logistic Regression Score = ",Logistic.score(X_test,y_test)
+#0.80
+
+# Grid Search
+
+import numpy as np
+from scipy.stats import uniform as sp_rand
+from sklearn.model_selection import RandomizedSearchCV
+
+# prepare a uniform distribution to sample for the alpha parameter
+param_grid = {'alpha': sp_rand()}
+
+# create and fit a ridge regression model, testing random alpha values
+model = RandomForestClassifier()
+rsearch = RandomizedSearchCV(estimator=model, param_distributions=param_grid, n_iter=100)
+rsearch.fit(X_train, y_train)
+print(rsearch)
+
+#Logistic Regression Grid Search
+
+param_grid={'C':(0.01,0.1,1,10,100,1000),
+                   'solver':('newton-cg', 'lbfgs'),
+                   'multi_class':('multinomial','ovr')}
+grid_Logistic=GridSearchCV(modelLogistic,param_grid,n_jobs=-1)
+grid_Logistic=grid_Logistic.fit(X_train,y_train)
+
+#Score test set
+print "Logistic Regression Score = ",grid_Logistic.score(X_test,y_test)
+print "Best Parameters = ",grid_Logistic.best_params_
 
 
 
+#cross validation
 
-    
-    
+from sklearn.model_selection import cross_val_score
+clf = svm.SVC(kernel='linear')
+scores = cross_val_score(clf,X_train, y_train,cv=5)    
+scores
+
+logisticmodel=LogisticRegression(multi_class='ovr',C=10,solver='newton-cg')
+print "Logistic Regression cv score = ", np.mean(cross_val_score(logisticmodel,X_train, y_train,cv=5))
+
+
