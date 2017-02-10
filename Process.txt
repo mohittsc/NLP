@@ -35,6 +35,4 @@ Euclidean Distance, Cosine Similarity
 Topic Mining:
 LDA
 Done
-More done
-done completely
-Changed by Deepak
+2nd change
